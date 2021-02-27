@@ -12,6 +12,7 @@ export class RegisterPage implements OnInit {
 
     name: new FormControl('', [
       Validators.required,
+      Validators.pattern('^[a-zA-Z]+$'),
       Validators.minLength(5),
       Validators.maxLength(20),
     ]),
@@ -25,12 +26,19 @@ export class RegisterPage implements OnInit {
     phone: new FormControl('', [
       Validators.required,
       Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'),
+      Validators.minLength(10),
     ]),
 
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(16),
+    ]),
+
+    passcode: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(10),
     ])
   })
 
@@ -50,6 +58,35 @@ export class RegisterPage implements OnInit {
     return this.registerForm.get('password')
   }
 
+  get passcode() {
+    return this.registerForm.get('passcode')
+  }
+
+  public errorMessages = {
+    name: [
+      { type: 'required', message: 'Name is required' },
+      { type: 'pattern', message: 'Please enter a valid name' },
+      { type: 'maxlength', message: 'Name can be maximum 20 characters', },
+    ],
+    email: [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Please enter a valid email' },
+    ],
+    password: [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'password minimum length 8', },
+      { type: 'maxlength', message: 'password maximum length 15', },
+    ],
+    phone: [
+      { type: 'required', message: 'Phone number is required' },
+      { type: 'pattern', message: 'Please enter a valid phone number' },
+      { type: 'minLength', message: 'Please enter a valid phone number', },
+    ],
+    passcode: [
+      { type: 'required', message: 'Passcode is required' },
+      { type: 'minLength', message: 'Please enter a valid passcode', },
+    ],
+  };
 
   constructor() { }
 

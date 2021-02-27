@@ -33,6 +33,24 @@ export class LoginPage implements OnInit {
     return this.form.get('password')
   }
 
+  public errorMessages = {
+    email: [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Please enter a valid email address' },
+    ],
+    password: [
+      { type: 'required', message: 'Password is required' },
+      {
+        type: 'minlength',
+        message: 'Password minimum length 8 characters',
+      },
+      {
+        type: 'maxlength',
+        message: 'Password maximum length 16 characters',
+      },
+    ],
+  };
+
   constructor(
     private util: UtilService,
     private navCtrl: NavController, 
