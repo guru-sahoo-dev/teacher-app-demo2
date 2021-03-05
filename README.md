@@ -1,4 +1,4 @@
-# teacher-app-login-signup-demo
+# teacher-app-demo
 
 run the app -> ionic serve
 
