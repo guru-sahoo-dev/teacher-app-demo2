@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,11 +9,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterPage implements OnInit {
 
+  //togglePassword funcn
+  showPassword = false;
+  passwordToggleIcon ='eye';
+  
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+
+    if (this.passwordToggleIcon == 'eye') {
+      this.passwordToggleIcon = 'eye-off';
+    } else {
+      this.passwordToggleIcon = 'eye';
+    }
+  }
+
   registerForm = new FormGroup({
 
     name: new FormControl('', [
       Validators.required,
-      Validators.pattern('^[a-zA-Z]+$'),
+      Validators.pattern('^[a-zA-Z ]+$'),
       Validators.minLength(5),
       Validators.maxLength(20),
     ]),
@@ -88,13 +103,27 @@ export class RegisterPage implements OnInit {
     ],
   };
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+  ) { }
 
   ngOnInit() {
   }
 
   submit() {
+
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.authService.createUser(
+      this.registerForm.value.name,
+      this.registerForm.value.email,
+      this.registerForm.value.password,
+      this.registerForm.value.phone,
+      this.registerForm.value.passcode
+    );
     console.log(this.registerForm.value);
   }
+  
 
 }

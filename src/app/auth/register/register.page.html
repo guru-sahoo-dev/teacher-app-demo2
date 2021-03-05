@@ -15,7 +15,7 @@
 
       <div class="form-container">
         <ion-item>
-          <ion-label position="floating">Name</ion-label>
+          <ion-label position="floating"><ion-icon name="person-outline"></ion-icon>Name</ion-label>
           <ion-input type="text" formControlName="name"></ion-input>
         </ion-item>
 
@@ -28,7 +28,7 @@
         </div>
 
         <ion-item>
-          <ion-label position="floating">Email</ion-label>
+          <ion-label position="floating"><ion-icon name="mail-outline"></ion-icon>Email</ion-label>
           <ion-input type="email" formControlName="email"></ion-input>
         </ion-item>
 
@@ -41,7 +41,7 @@
         </div>
 
         <ion-item>
-          <ion-label position="floating">Phone no.</ion-label>
+          <ion-label position="floating"><ion-icon name="call-outline"></ion-icon>Phone no.</ion-label>
           <ion-input type="tel" formControlName="phone"></ion-input>
         </ion-item>
 
@@ -54,9 +54,9 @@
         </div>
 
         <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-          <ion-icon name="eye" slot="end"></ion-icon>
+          <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon>Password</ion-label>
+          <ion-input name="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"></ion-input>
+          <ion-icon name="eye" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
         </ion-item>
 
         <div *ngFor="let error of errorMessages.password">
@@ -68,7 +68,7 @@
         </div>
 
         <ion-item>
-          <ion-label position="floating">Passcode</ion-label>
+          <ion-label position="floating"><ion-icon name="finger-print-outline"></ion-icon>Passcode</ion-label>
           <ion-input type="number" formControlName="passcode"></ion-input>
         </ion-item>
 
@@ -81,7 +81,7 @@
         </div>
       
 
-        <ion-button expand="block" class="main-button" type="submit">Sign Up</ion-button>
+        <ion-button expand="block" class="main-button" type="submit" [disabled]="registerForm.invalid"><ion-icon name="log-in-outline"></ion-icon>Sign Up</ion-button>
 
         <div class="sign-up">
           Already have an account? <ion-button color="dark" fill="clear" routerLink="/login" routerDirection="forward">Sign in</ion-button>

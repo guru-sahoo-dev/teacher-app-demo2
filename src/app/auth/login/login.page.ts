@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { IonInput, NavController } from '@ionic/angular';
 import { UtilService } from 'src/app/util.service';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -9,8 +10,24 @@ import { UtilService } from 'src/app/util.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
 
+  //togglePassword funcn
+  showPassword = false;
+  passwordToggleIcon ='eye';
+  
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+
+    if (this.passwordToggleIcon == 'eye') {
+      this.passwordToggleIcon = 'eye-off';
+    } else {
+      this.passwordToggleIcon = 'eye';
+    }
+  }
+
+ 
   form = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -53,7 +70,9 @@ export class LoginPage implements OnInit {
 
   constructor(
     private util: UtilService,
-    private navCtrl: NavController, 
+    private navCtrl: NavController,
+    // private input: IonInput,
+    public authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -61,12 +80,18 @@ export class LoginPage implements OnInit {
 
   submit() {
     console.log(this.form.value); 
+    if (this.form.invalid) {
+      return;
+    }
+    this.authService.login(
+      this.form.value.email,
+      this.form.value.password
+    );
   }
 
   login() {
     // Enabling Side Menu
     this.util.setMenuState(true);
-    this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
+    // this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
   }
-
 }
