@@ -8,11 +8,10 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
   //togglePassword funcn
   showPassword = false;
-  passwordToggleIcon ='eye';
-  
+  passwordToggleIcon = 'eye';
+
   togglePassword(): void {
     this.showPassword = !this.showPassword;
 
@@ -24,7 +23,6 @@ export class RegisterPage implements OnInit {
   }
 
   registerForm = new FormGroup({
-
     name: new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z ]+$'),
@@ -35,7 +33,6 @@ export class RegisterPage implements OnInit {
     email: new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$'),
-      
     ]),
 
     phone: new FormControl('', [
@@ -54,34 +51,34 @@ export class RegisterPage implements OnInit {
       Validators.required,
       Validators.minLength(5),
       Validators.maxLength(10),
-    ])
-  })
+    ]),
+  });
 
   get name() {
-    return this.registerForm.get('name')
+    return this.registerForm.get('name');
   }
 
   get email() {
-    return this.registerForm.get('email')
+    return this.registerForm.get('email');
   }
 
   get phone() {
-    return this.registerForm.get('phone')
+    return this.registerForm.get('phone');
   }
 
   get password() {
-    return this.registerForm.get('password')
+    return this.registerForm.get('password');
   }
 
   get passcode() {
-    return this.registerForm.get('passcode')
+    return this.registerForm.get('passcode');
   }
 
   public errorMessages = {
     name: [
       { type: 'required', message: 'Name is required' },
       { type: 'pattern', message: 'Please enter a valid name' },
-      { type: 'maxlength', message: 'Name can be maximum 20 characters', },
+      { type: 'maxlength', message: 'Name can be maximum 20 characters' },
     ],
     email: [
       { type: 'required', message: 'Email is required' },
@@ -89,29 +86,25 @@ export class RegisterPage implements OnInit {
     ],
     password: [
       { type: 'required', message: 'Password is required' },
-      { type: 'minlength', message: 'password minimum length 8', },
-      { type: 'maxlength', message: 'password maximum length 15', },
+      { type: 'minlength', message: 'password minimum length 8' },
+      { type: 'maxlength', message: 'password maximum length 15' },
     ],
     phone: [
       { type: 'required', message: 'Phone number is required' },
       { type: 'pattern', message: 'Please enter a valid phone number' },
-      { type: 'minLength', message: 'Please enter a valid phone number', },
+      { type: 'minLength', message: 'Please enter a valid phone number' },
     ],
     passcode: [
       { type: 'required', message: 'Passcode is required' },
-      { type: 'minLength', message: 'Please enter a valid passcode', },
+      { type: 'minLength', message: 'Please enter a valid passcode' },
     ],
   };
 
-  constructor(
-    public authService: AuthService,
-  ) { }
+  constructor(public authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   submit() {
-
     if (this.registerForm.invalid) {
       return;
     }
@@ -124,6 +117,4 @@ export class RegisterPage implements OnInit {
     );
     console.log(this.registerForm.value);
   }
-  
-
 }

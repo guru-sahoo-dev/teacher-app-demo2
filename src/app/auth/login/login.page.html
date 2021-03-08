@@ -15,11 +15,13 @@
 
       <div class="form-container">
         <ion-item>
-          <ion-label position="floating"><ion-icon class="icon" name="mail-outline"></ion-icon>Email</ion-label>
+          <ion-label position="floating"
+            ><ion-icon class="icon" name="mail-outline"></ion-icon
+            >Email</ion-label
+          >
           <ion-input type="email" formControlName="email"></ion-input>
         </ion-item>
 
-        
         <div *ngFor="let error of errorMessages.email">
           <ng-container
             *ngIf="email.hasError(error.type) && (email.dirty || email.touched)"
@@ -29,12 +31,22 @@
         </div>
 
         <ion-item>
-          <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon>Password</ion-label>
-          <ion-input name="password" formControlName="password" [type]="showPassword ? 'text' : 'password'"></ion-input>
-          <ion-icon name="eye" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+          <ion-label position="floating"
+            ><ion-icon name="lock-closed-outline"></ion-icon>Password</ion-label
+          >
+          <ion-input
+            name="password"
+            formControlName="password"
+            [type]="showPassword ? 'text' : 'password'"
+          ></ion-input>
+          <ion-icon
+            name="eye"
+            slot="end"
+            [name]="passwordToggleIcon"
+            (click)="togglePassword()"
+          ></ion-icon>
         </ion-item>
 
-        
         <div *ngFor="let error of errorMessages.password">
           <ng-container
             *ngIf="password.hasError(error.type) && (password.dirty || password.touched)"
@@ -44,13 +56,35 @@
         </div>
 
         <div class="sign-up">
-          <ion-button color="dark" style="margin-bottom: 20px;" fill="clear" routerLink="/forgot-password" routerDirection="forward">Forgot Password</ion-button>
+          <ion-button
+            color="dark"
+            style="margin-bottom: 20px"
+            fill="clear"
+            routerLink="/forgot-password"
+            routerDirection="forward"
+            >Forgot Password</ion-button
+          >
         </div>
 
-        <ion-button expand="block" class="main-button" type="submit" (click)="login()" [disabled]="form.invalid"><ion-icon name="lock-open-outline"></ion-icon>Log in</ion-button>
+        <ion-button
+          expand="block"
+          class="main-button"
+          type="submit"
+          (click)="login()"
+          [disabled]="form.invalid"
+          ><ion-icon name="lock-open-outline"></ion-icon>Log in</ion-button
+        >
 
         <div class="sign-up">
-          Don't have an account? <ion-button color="dark" style="margin-bottom: 20px;" fill="clear" routerLink="/register" routerDirection="forward">Sign up</ion-button>
+          Don't have an account?
+          <ion-button
+            color="dark"
+            style="margin-bottom: 20px"
+            fill="clear"
+            routerLink="/register"
+            routerDirection="forward"
+            >Sign up</ion-button
+          >
         </div>
       </div>
     </div>

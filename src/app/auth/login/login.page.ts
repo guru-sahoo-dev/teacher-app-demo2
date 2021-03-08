@@ -4,19 +4,16 @@ import { IonInput, NavController } from '@ionic/angular';
 import { UtilService } from 'src/app/util.service';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-
 export class LoginPage implements OnInit {
-
   //togglePassword funcn
   showPassword = false;
-  passwordToggleIcon ='eye';
-  
+  passwordToggleIcon = 'eye';
+
   togglePassword(): void {
     this.showPassword = !this.showPassword;
 
@@ -27,27 +24,25 @@ export class LoginPage implements OnInit {
     }
   }
 
- 
   form = new FormGroup({
     email: new FormControl('', [
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$'),
-      
     ]),
 
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(16),
-    ])
-  })
+    ]),
+  });
 
   get email() {
-    return this.form.get('email')
+    return this.form.get('email');
   }
 
   get password() {
-    return this.form.get('password')
+    return this.form.get('password');
   }
 
   public errorMessages = {
@@ -72,26 +67,22 @@ export class LoginPage implements OnInit {
     private util: UtilService,
     private navCtrl: NavController,
     // private input: IonInput,
-    public authService: AuthService,
-  ) { }
+    public authService: AuthService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   submit() {
-    console.log(this.form.value); 
+    console.log(this.form.value);
     if (this.form.invalid) {
       return;
     }
-    this.authService.login(
-      this.form.value.email,
-      this.form.value.password
-    );
+    this.authService.login(this.form.value.email, this.form.value.password);
   }
 
   login() {
     // Enabling Side Menu
     this.util.setMenuState(true);
-    // this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
+    // this.navCtrl.navigateRoot('/tabs', { animationDirection: 'forward' });
   }
 }

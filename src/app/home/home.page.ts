@@ -6,7 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  public categories = [];
+  public featuredProducts = [];
+  public bestSellProducts = [];
 
   constructor() {}
 
+  ngOnInit() {
+    // this.categories = this.data.getCategories();
+    // this.featuredProducts = this.data.getFeaturedProducts();
+    // this.bestSellProducts = this.data.getBestSellProducts();
+  }
 }
